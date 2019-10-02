@@ -49,7 +49,15 @@ player = Player("Player", room['outside'])
 
 def print_room(room):
     print("\nCurrent room: ", room.name)
-    print(textwrap.fill(room.description, width=50))
+    print(textwrap.fill(room.description, width=50), '\n')
+
+    print("Items in room:")
+
+    if len(room.items) > 0:
+        for item in room.items:
+            print("  - ", item)
+    else:
+        print("    This room is empty.")
 
 # Write a loop that:
 #
