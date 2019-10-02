@@ -2,6 +2,7 @@ import textwrap
 from room import Room
 from player import Player
 from item import Item
+import formatting
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -42,31 +43,34 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 
-print("\n\nWelcome to the Treasure Hunt Adventure Game. \n")
-print("Use keys n, s, e and w to move the player North, South, East and West.")
-print("Get items with get/take [item]")
-print("Drop items with drop [item]")
-print("Use i or inventory to view your inventory.\n")
+formatting.headline('Welcome to the Treasure Hunt Adventure Game')
+
+formatting.details(
+    "Use keys n, s, e and w to move the player North, South, East and West.")
+formatting.details("Get items with get/take [item]")
+formatting.details("Drop items with drop [item]")
+formatting.details("Use i or inventory to view your inventory.")
 
 player = Player("Player", room['outside'])
 
 
 def print_room(room):
-    print("\nCurrent room: ", room.name)
-    print(textwrap.fill(room.description, width=50), '\n')
+    formatting.message(f"Current room: {room.name}")
+    formatting.message(textwrap.fill(room.description, width=50))
 
-    print("Items in room:")
+    formatting.message("Items in room:")
 
     if len(room.items) > 0:
         for item in room.items:
-            print("  - ", item)
+            formatting.message(f"  - {item}")
     else:
-        print("    This room is empty.")
+        formatting.message("    This room is empty.")
 
 
 print_room(player.current_room)
 
 while True:
+    print()
     user_input = input("[n/s/e/w]: ").lower().split()
 
     if len(user_input) == 1:
@@ -74,28 +78,32 @@ while True:
 
         if user_input == 'n':
             if player.current_room.n_to == None:
-                print("\nThere is no room in that direction adventurer!")
+                formatting.error(
+                    "There is no room in that direction adventurer!")
                 continue
 
             player.current_room = player.current_room.n_to
 
         elif user_input == 's':
             if player.current_room.s_to == None:
-                print("\nThere is no room in that direction adventurer!")
+                formatting.error(
+                    "There is no room in that direction adventurer!")
                 continue
 
             player.current_room = player.current_room.s_to
 
         elif user_input == 'e':
             if player.current_room.e_to == None:
-                print("\nThere is no room in that direction adventurer!")
+                formatting.error(
+                    "There is no room in that direction adventurer!")
                 continue
 
             player.current_room = player.current_room.e_to
 
         elif user_input == 'w':
             if player.current_room.w_to == None:
-                print("\nThere is no room in that direction adventurer!")
+                formatting.error(
+                    "There is no room in that direction adventurer!")
                 continue
 
             player.current_room = player.current_room.w_to
@@ -105,11 +113,11 @@ while True:
             continue
 
         elif user_input == 'q':
-            print("Thanks for playing.")
+            formatting.details("Thanks for playing.")
             break
 
         else:
-            print("Invalid input!")
+            formatting.error("Invalid input!")
             continue
 
     elif len(user_input) == 2:
@@ -121,7 +129,7 @@ while True:
                 removed_item.on_take()
                 player.add_item(removed_item)
             else:
-                print(f"Room does not contain {item}")
+                formatting.error(f"Room does not contain {item}")
                 continue
 
         elif command == 'drop':
@@ -130,15 +138,15 @@ while True:
                 removed_item.on_drop()
                 player.current_room.add_item(removed_item)
             else:
-                print(f"Your inventory does not contain {item}")
+                formatting.error(f"Your inventory does not contain {item}")
                 continue
 
         else:
-            print("Invalid input!")
+            formatting.error("Invalid input!")
             continue
 
     else:
-        print("Invalid input!")
+        formatting.error("Invalid input!")
         continue
 
     print_room(player.current_room)
