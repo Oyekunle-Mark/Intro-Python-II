@@ -50,7 +50,10 @@ room['treasure'].s_to = room['narrow']
 #
 
 print("\n\nWelcome to the Treasure Hunt Adventure Game. \n")
-print("Use keys n, s, e and w to move the player North, South, East and West.\n")
+print("Use keys n, s, e and w to move the player North, South, East and West.")
+print("Get items with get/take [item]")
+print("Drop items with drop [item]")
+print("Use i or inventory to view your inventory.\n")
 
 # Make a new player object that is currently in the 'outside' room.
 
