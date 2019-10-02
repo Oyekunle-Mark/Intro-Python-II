@@ -46,6 +46,11 @@ print("Use keys n, s, e and w to move the player North, South, East and West.\n"
 
 player = Player("Player", room['outside'])
 
+
+def print_room(room):
+    print("\nCurrent room: ", room.name)
+    print(textwrap.fill(room.description, width=50))
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -59,8 +64,7 @@ player = Player("Player", room['outside'])
 
 
 while True:
-    print("\nCurrent room: ", player.current_room.name)
-    print("Prophecy: ", textwrap.fill(player.current_room.description))
+    print_room(player.current_room)
 
     user_input = input("[n/s/e/w]: ")
 
