@@ -1,26 +1,36 @@
 import textwrap
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ["Lantern", "Axe", "Bellow"]),
+                     "North of you, the cave mount beckons",
+                     [Item("Lantern"), Item("Axe"), Item("Bellow")]),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ["Coal", "Needle", "Gun"]),
+    'foyer':    Room("Foyer",
+                     """Dim light filters in from the south. Dusty
+passages run north and east.""",
+                     [Item("Coal"), Item("Needle"), Item("Gun")]),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    'overlook': Room("Grand Overlook",
+                     """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ["Pellet", "Plates", "Book"]),
+the distance, but there is no way across the chasm.""",
+                     [Item("Pellet"), Item("Plates"), Item("Book")]),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ["Shovel", "Barrow", "Anvil"]),
+    'narrow':   Room("Narrow Passage",
+                     """The narrow passage bends here from west
+to north. The smell of gold permeates the air.""",
+                     [Item("Shovel"), Item("Barrow"), Item("Anvil")]),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+    'treasure': Room("Treasure Chamber",
+                     """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ["Chest", "Bag", "Spear"]),
+earlier adventurers. The only exit is to the south.""",
+                     [Item("Chest"), Item("Bag"), Item("Spear")]),
 }
 
 
@@ -113,3 +123,6 @@ while True:
 
     elif len(user_input) == 2:
         command, item = user_input
+
+        if item == 'get' or item == 'take':
+            pass
