@@ -59,21 +59,37 @@ player = Player("Player", room['outside'])
 
 
 while True:
-    print("\nCurrent room: ", player.current_room.name, '\n')
+    print("\nCurrent room: ", player.current_room.name)
     print("Prophecy: ", textwrap.fill(player.current_room.description))
 
     user_input = input("[n/s/e/w]: ")
 
     if user_input == 'n':
+        if player.current_room.n_to == None:
+            print("\nThere is no room in that direction adventurer!")
+            continue
+
         player.current_room = player.current_room.n_to
 
     elif user_input == 's':
+        if player.current_room.s_to == None:
+            print("\nThere is no room in that direction adventurer!")
+            continue
+
         player.current_room = player.current_room.s_to
 
     elif user_input == 'e':
+        if player.current_room.e_to == None:
+            print("\nThere is no room in that direction adventurer!")
+            continue
+
         player.current_room = player.current_room.e_to
 
     elif user_input == 'w':
+        if player.current_room.w_to == None:
+            print("\nThere is no room in that direction adventurer!")
+            continue
+
         player.current_room = player.current_room.w_to
 
     elif user_input == 'q':
