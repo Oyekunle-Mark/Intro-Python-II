@@ -16,6 +16,26 @@ class Room:
     def add_item(self, item):
         self.items.append(item)
 
+    def item_exist(self, item_name):
+        for item in self.items:
+            if item.name == item_name:
+                return True
+
+        return False
+
+    def remove_item(self, item_name):
+        new_items = []
+        # removed_item = ''
+
+        for item in self.items:
+            if item.name == item_name:
+                removed_item = item
+            else:
+                new_items.append(item)
+
+        self.items = new_items
+        return removed_item
+
     def __str__(self):
         return f"In room {self.name}.\n{self.description}"
 

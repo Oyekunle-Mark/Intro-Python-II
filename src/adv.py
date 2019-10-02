@@ -124,5 +124,9 @@ while True:
     elif len(user_input) == 2:
         command, item = user_input
 
-        if item == 'get' or item == 'take':
-            pass
+        if command == 'get' or command == 'take':
+            if player.current_room.item_exist(item):
+                removed_item = player.current_room.remove_item(item)
+                player.add_item(removed_item)
+            else:
+                print(f"Room does not contain {item}")
