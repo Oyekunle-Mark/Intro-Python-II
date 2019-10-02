@@ -63,3 +63,19 @@ while True:
     print("Prophecy: ", textwrap.fill(player.current_room.description))
 
     user_input = input("[n/s/e/w]: ")
+
+    if user_input == 'n':
+        player.current_room = player.current_room.n_to
+
+    elif user_input == 's':
+        player.current_room = player.current_room.s_to
+
+    elif user_input == 'e':
+        player.current_room = player.current_room.e_to
+
+    elif user_input == 'w':
+        player.current_room = player.current_room.w_to
+
+    elif user_input == 'q':
+        print("Thanks for playing.")
+        break
