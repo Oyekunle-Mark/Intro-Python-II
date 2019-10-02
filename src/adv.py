@@ -117,6 +117,9 @@ while True:
 
             player.current_room = player.current_room.w_to
 
+        elif user_input == 'i' or user_input == 'inventory':
+            player.show_inventory()
+
         elif user_input == 'q':
             print("Thanks for playing.")
             break

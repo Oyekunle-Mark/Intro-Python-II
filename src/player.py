@@ -33,6 +33,8 @@ class Player:
 
     def show_inventory(self):
         if len(self.items) > 0:
+            print("Your inventory:")
+
             for item in self.items:
                 print("  - ", item)
         else:
