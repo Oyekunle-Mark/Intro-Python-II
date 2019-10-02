@@ -3,8 +3,6 @@ from room import Room
 from player import Player
 from item import Item
 
-# Declare all the rooms
-
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons",
@@ -34,8 +32,6 @@ earlier adventurers. The only exit is to the south.""",
 }
 
 
-# Link rooms together
-
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -45,17 +41,12 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
 
 print("\n\nWelcome to the Treasure Hunt Adventure Game. \n")
 print("Use keys n, s, e and w to move the player North, South, East and West.")
 print("Get items with get/take [item]")
 print("Drop items with drop [item]")
 print("Use i or inventory to view your inventory.\n")
-
-# Make a new player object that is currently in the 'outside' room.
 
 player = Player("Player", room['outside'])
 
@@ -72,21 +63,10 @@ def print_room(room):
     else:
         print("    This room is empty.")
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
 
+print_room(player.current_room)
 
 while True:
-    print_room(player.current_room)
-
     user_input = input("[n/s/e/w]: ").split()
 
     if len(user_input) == 1:
@@ -122,10 +102,15 @@ while True:
 
         elif user_input == 'i' or user_input == 'inventory':
             player.show_inventory()
+            continue
 
         elif user_input == 'q':
             print("Thanks for playing.")
             break
+
+        else:
+            print("Invalid input!")
+            continue
 
     elif len(user_input) == 2:
         command, item = user_input
@@ -137,6 +122,7 @@ while True:
                 player.add_item(removed_item)
             else:
                 print(f"Room does not contain {item}")
+                continue
 
         elif command == 'drop':
             if player.item_exist(item):
@@ -145,3 +131,14 @@ while True:
                 player.current_room.add_item(removed_item)
             else:
                 print(f"Your inventory does not contain {item}")
+                continue
+
+        else:
+            print("Invalid input!")
+            continue
+
+    else:
+        print("Invalid input!")
+        continue
+
+    print_room(player.current_room)
