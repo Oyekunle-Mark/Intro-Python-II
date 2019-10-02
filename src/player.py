@@ -14,7 +14,7 @@ class Player:
 
     def item_exist(self, item_name):
         for item in self.items:
-            if item.name == item_name:
+            if item.name.lower() == item_name:
                 return True
 
         return False
@@ -23,7 +23,7 @@ class Player:
         new_items = []
 
         for item in self.items:
-            if item.name == item_name:
+            if item.name.lower() == item_name:
                 removed_item = item
             else:
                 new_items.append(item)

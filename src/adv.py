@@ -67,7 +67,7 @@ def print_room(room):
 print_room(player.current_room)
 
 while True:
-    user_input = input("[n/s/e/w]: ").split()
+    user_input = input("[n/s/e/w]: ").lower().split()
 
     if len(user_input) == 1:
         user_input = user_input[0]
