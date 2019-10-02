@@ -1,4 +1,6 @@
+import textwrap
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -37,7 +39,12 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+print("\n\nWelcome to the Treasure Hunt Adventure Game. \n")
+print("Use keys n, s, e and w to move the player North, South, East and West.\n")
+
 # Make a new player object that is currently in the 'outside' room.
+
+player = Player("Player", room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +56,10 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+while True:
+    print("\nCurrent room: ", player.current_room.name, '\n')
+    print("Prophecy: ", textwrap.fill(player.current_room.description))
+
+    user_input = input("[n/s/e/w]: ")
