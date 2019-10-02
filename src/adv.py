@@ -127,6 +127,7 @@ while True:
         if command == 'get' or command == 'take':
             if player.current_room.item_exist(item):
                 removed_item = player.current_room.remove_item(item)
+                removed_item.on_take()
                 player.add_item(removed_item)
             else:
                 print(f"Room does not contain {item}")
