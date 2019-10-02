@@ -25,7 +25,6 @@ class Room:
 
     def remove_item(self, item_name):
         new_items = []
-        # removed_item = ''
 
         for item in self.items:
             if item.name == item_name:

@@ -131,3 +131,11 @@ while True:
                 player.add_item(removed_item)
             else:
                 print(f"Room does not contain {item}")
+
+        elif command == 'drop':
+            if player.item_exist(item):
+                removed_item = player.remove_item(item)
+                removed_item.on_drop()
+                player.current_room.add_item(removed_item)
+            else:
+                print(f"Your inventory does not contain {item}")
