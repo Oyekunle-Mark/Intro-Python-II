@@ -31,6 +31,13 @@ class Player:
         self.items = new_items
         return removed_item
 
+    def show_inventory(self):
+        if len(self.items) > 0:
+            for item in self.items:
+                print("  - ", item)
+        else:
+            print("Your inventory is empty.")
+
     def __str__(self):
         return f"Player {self.name} is in room {self.current_room}"
 
