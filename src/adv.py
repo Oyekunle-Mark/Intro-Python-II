@@ -72,8 +72,8 @@ def print_room(room):
     formatting.message("Items in room:")
 
     if len(room.items) > 0:
-        for item in room.items:
-            formatting.message(f"  - {item}")
+        for index, item in enumerate(room.items, 1):
+            formatting.message(f"  {index}. {item}")
     else:
         formatting.message("    This room is empty.")
 

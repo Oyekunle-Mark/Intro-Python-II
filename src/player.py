@@ -35,8 +35,8 @@ class Player:
         if len(self.items) > 0:
             print("Your inventory:")
 
-            for item in self.items:
-                print("  - ", item)
+            for index, item in enumerate(self.items, 1):
+                print(f"   {index}. {item}")
         else:
             print("Your inventory is empty.")
 
