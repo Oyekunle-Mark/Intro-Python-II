@@ -2,6 +2,7 @@ import textwrap
 from room import Room
 from player import Player
 from item import Item
+from treasure import Treasure
 import formatting
 
 room = {
@@ -29,7 +30,7 @@ to north. The smell of gold permeates the air.""",
                      """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-                     [Item("Chest"), Item("Bag"), Item("Spear")]),
+                     [Treasure("Gold"), Treasure("Silver"), Treasure("Diamond")]),
     'corridor': Room("Corridor",
                      "A winding passage leads to the north. To east the path that brought you here",
                      [Item("Portrait"), Item("Curtain")]),
