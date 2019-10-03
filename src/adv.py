@@ -11,7 +11,7 @@ room = {
 
     'foyer':    Room("Foyer",
                      """Dim light filters in from the south. Dusty
-passages run north and east.""",
+passages run north, west and east.""",
                      [Item("Coal"), Item("Needle"), Item("Gun")]),
 
     'overlook': Room("Grand Overlook",
@@ -30,6 +30,13 @@ to north. The smell of gold permeates the air.""",
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
                      [Item("Chest"), Item("Bag"), Item("Spear")]),
+    'corridor': Room("Corridor",
+                     "A winding passage leads to the north. To east the path that brought you here",
+                     [Item("Portrait"), Item("Curtain")]),
+    'patio': Room("Patio",
+                  """A wilderness opens up before you lonely adventurer. You must return south, nothing awaits you to the north
+    """,
+                  [Item("Chair"), Item("Basket"), Item("Knife")])
 }
 
 
@@ -41,6 +48,10 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['foyer'].w_to = room['corridor']
+room['corridor'].e_to = room['foyer']
+room['corridor'].n_to = room['patio']
+room['patio'].s_to = room['corridor']
 
 
 formatting.headline('Welcome to the Treasure Hunt Adventure Game')
