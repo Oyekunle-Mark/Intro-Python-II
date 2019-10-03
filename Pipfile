@@ -4,6 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pytlint = "*"
+autopep8 = "*"
 
 [dev-packages]
 
