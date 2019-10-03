@@ -67,6 +67,16 @@ def print_room(room):
         formatting.message("    This room is empty.")
 
 
+def move_player(direction, player):
+    dir = f"{direction}_to"
+
+    if getattr(player.current_room, dir) == None:
+        formatting.error(
+            "There is no room in that direction adventurer!")
+    else:
+        player.current_room = getattr(player.current_room, dir)
+
+
 print_room(player.current_room)
 
 while True:
@@ -76,46 +86,46 @@ while True:
     if len(user_input) == 1:
         user_input = user_input[0]
 
-        if user_input == 'n':
-            if player.current_room.n_to == None:
-                formatting.error(
-                    "There is no room in that direction adventurer!")
-                continue
+        # if user_input == 'n':
+        #     if player.current_room.n_to == None:
+        #         formatting.error(
+        #             "There is no room in that direction adventurer!")
+        #         continue
 
-            player.current_room = player.current_room.n_to
+        #     player.current_room = player.current_room.n_to
 
-        elif user_input == 's':
-            if player.current_room.s_to == None:
-                formatting.error(
-                    "There is no room in that direction adventurer!")
-                continue
+        # elif user_input == 's':
+        #     if player.current_room.s_to == None:
+        #         formatting.error(
+        #             "There is no room in that direction adventurer!")
+        #         continue
 
-            player.current_room = player.current_room.s_to
+        #     player.current_room = player.current_room.s_to
 
-        elif user_input == 'e':
-            if player.current_room.e_to == None:
-                formatting.error(
-                    "There is no room in that direction adventurer!")
-                continue
+        # elif user_input == 'e':
+        #     if player.current_room.e_to == None:
+        #         formatting.error(
+        #             "There is no room in that direction adventurer!")
+        #         continue
 
-            player.current_room = player.current_room.e_to
+        #     player.current_room = player.current_room.e_to
 
-        elif user_input == 'w':
-            if player.current_room.w_to == None:
-                formatting.error(
-                    "There is no room in that direction adventurer!")
-                continue
+        # elif user_input == 'w':
+        #     if player.current_room.w_to == None:
+        #         formatting.error(
+        #             "There is no room in that direction adventurer!")
+        #         continue
 
-            player.current_room = player.current_room.w_to
+        #     player.current_room = player.current_room.w_to
 
+        if user_input in ['n', 's', 'e', 'w']:
+            move_player(user_input, player)
         elif user_input == 'i' or user_input == 'inventory':
             player.show_inventory()
             continue
-
         elif user_input == 'q':
             formatting.details("Thanks for playing.")
             break
-
         else:
             formatting.error("Invalid input!")
             continue
